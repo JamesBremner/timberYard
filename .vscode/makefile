@@ -5,6 +5,7 @@ VPATH = ./src
 INCS = -I./include \
 	-I../ravencode/pub/src \
 	-I../raven-set \
+	-I../pack2/src \
 	-I../boost/boost1_78 
 
 LIBS = \
@@ -25,18 +26,32 @@ OPT = -g
 CCflags = -std=c++17 $(OPT) -D_mingw_
 
 # sources
-OBJ_starter = \
-	$(ODIR)/main.o 
+OBJ_timber = \
+	$(ODIR)/TimberAllocation.o \
+	$(ODIR)/taTimber.o \
+	$(ODIR)/taInstance.o \
+	$(ODIR)/taLevel.o \
+	$(ODIR)/taCutter.o \
+	$(ODIR)/taSpace.o \
+	$(ODIR)/pack2.o \
+	$(ODIR)/cCut.o \
 
 ### COMPILE
 
-$(ODIR)/%.o: %.cpp  
-	g++  $(CCflags) \
-	-c -o $@ $< $(INCS)
+$(ODIR)/pack2.o: ../pack2/src/pack2.cpp
+	g++ -c $< \
+	-o $@  $(CCflags) $(INCS)
+$(ODIR)/cCut.o: ../pack2/src/cCut.cpp
+	g++ -c $< \
+	-o $@  $(CCflags) $(INCS)
 
-starter: $(OBJ_starter)
+$(ODIR)/%.o: %.cpp  
+	g++ -c $< \
+	-o $@  $(CCflags) $(INCS)
+
+timber: $(OBJ_timber)
 	g++ $(OPT) \
-	-o bin/starter.exe $^  \
+	-o bin/timber.exe $^  \
 	$(static_link_flags) $(LIBS)
 
 .PHONY: clean
