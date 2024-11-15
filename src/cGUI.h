@@ -35,6 +35,7 @@ private:
     enum class eView {
         order,
         inventory,
+        cuts,
     };
     eView myView;
 

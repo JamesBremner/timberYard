@@ -209,9 +209,12 @@ public:
     void read(
         const std::string& fname );
 
+    void solve();
+
     std::string textProblem();
     std::string textOrder();
     std::string textInventory();
+    std::string textCuts();
     std::string textSolution();
 
     /** Expand multiple timbers

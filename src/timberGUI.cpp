@@ -21,6 +21,9 @@ void cGUI::draw(wex::shapes &S)
         case eView::order:
             S.text(I.textOrder(),{5, 5, 500, 500});
             break;
+        case eView::cuts:
+            S.text(I.textCuts(),{5, 5, 500, 500});
+            break;
     }
     // auto t = I.textSolution();
     // S.text(t, {5, 5, 500, 500});
@@ -39,6 +42,7 @@ void cGUI::menus()
             wex::filebox fb(fm);
             fb.open();
             I.read(fb.path());
+            I.solve();
             fm.update();
         });
     mb.append("File", *myFileMenu);
@@ -56,6 +60,13 @@ void cGUI::menus()
         [&](const std::string &title)
         {
             myView = eView::order;
+            fm.update();
+        });
+    myViewMenu->append(
+        "Cuts",
+        [&](const std::string &title)
+        {
+            myView = eView::cuts;
             fm.update();
         });
     mb.append("View", *myViewMenu);
