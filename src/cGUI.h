@@ -4,26 +4,7 @@ public:
     /** CTOR
      * @param[in] title will appear in application window title
      * @param[in] vlocation set location and size of appplication window
-     * 
-     * Usage:
-     * 
-     * <pre>
-class appGUI : public cStarterGUI
-{
-public:
-    appGUI()
-        : cStarterGUI(
-              "The Appliccation",
-              {50, 50, 1000, 500})
-    {
-
-        // initialize the solution
-        ...
-
-        show();
-        run();
-    }
-    </pre>
+     *
     */
     cGUI(
         const std::string &title,
@@ -32,6 +13,8 @@ public:
     {
         fm.move(vlocation);
         fm.text(title);
+
+        menus();
 
         fm.events().draw(
             [&](PAINTSTRUCT &ps)
@@ -43,16 +26,15 @@ public:
         fm.show();
         fm.run();
     }
-    /** Draw nothing
-     * 
-     * An application should over-ride this method
-     * to perform any drawing reuired
-     */
-    virtual void draw( wex::shapes& S )
-    {
 
-    }
 
-protected:
+
+private:
     wex::gui &fm;
+    wex::menu *myFileMenu;
+
+     void draw(wex::shapes &S);
+
+    void menus();
+
 };
