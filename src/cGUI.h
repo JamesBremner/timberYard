@@ -5,11 +5,12 @@ public:
      * @param[in] title will appear in application window title
      * @param[in] vlocation set location and size of appplication window
      *
-    */
+     */
     cGUI(
         const std::string &title,
         const std::vector<int> &vlocation)
-        : fm(wex::maker::make())
+        : fm(wex::maker::make()),
+        myView(eView::inventory)
     {
         fm.move(vlocation);
         fm.text(title);
@@ -27,14 +28,17 @@ public:
         fm.run();
     }
 
-
-
 private:
     wex::gui &fm;
     wex::menu *myFileMenu;
+    wex::menu *myViewMenu;
+    enum class eView {
+        order,
+        inventory,
+    };
+    eView myView;
 
-     void draw(wex::shapes &S);
+    void draw(wex::shapes &S);
 
     void menus();
-
 };

@@ -67,6 +67,28 @@ void cInstance::expandCount( timberv_t& tv )
         ex.begin(), ex.end() );
 }
 
+std::string cInstance::textOrder()
+{
+    std::stringstream ss;
+    ss << "Order\n";
+    for(  auto& t : myOrder )
+    {
+        ss << "d " << t->myLength <<" "<< t->myWidth <<" "<< t->myHeight
+           << " 1 " << t->myUserID << "\n";
+    }
+     return ss.str();
+}
+std::string cInstance::textInventory()
+{
+    std::stringstream ss;
+    ss << "Inventory\n";
+        for(  auto& t : myStock )
+    {
+        ss << "i " << t->myLength <<" "<< t->myWidth <<" "<< t->myHeight
+           << " 1 " << t->myUserID << "\n";
+    }
+         return ss.str();
+}
 std::string cInstance::textSolution()
 {
     std::stringstream ss;

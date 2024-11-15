@@ -210,6 +210,8 @@ public:
         const std::string& fname );
 
     std::string textProblem();
+    std::string textOrder();
+    std::string textInventory();
     std::string textSolution();
 
     /** Expand multiple timbers
