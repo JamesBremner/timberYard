@@ -13,3 +13,5 @@ The application outputs
  - the remaining inventory after the order is fulfilled.
 
 See the wiki for input and output file formats and an example run
+
+There is a console and a GUI application.  Both applications read the same problem file.
